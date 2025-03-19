@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class NewtonRaphsonGeneric {
     public static void main(String[] args) {
         // Polinomul este de grad 3, coeficienții sunt fixați
-        System.out.println("Introduceți aproximația inițială: ");
+        System.out.println("Introduceți aproximația inițială -> ");
         double[] coefficients = {3, -5, 2, -7};
         double initialGuess = 3;
         double tolerance = 1e-6;
