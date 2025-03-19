@@ -4,12 +4,9 @@ import java.util.Scanner;
 
 public class NewtonRaphsonGeneric {
     public static void main(String[] args) {
-//        Scanner scanner = new Scanner(System.in);
-
         // Polinomul este de grad 3, coeficienții sunt fixați
-        double[] coefficients = {3, -5, 2, -7};
-
         System.out.println("Introduceți aproximația inițială: ");
+        double[] coefficients = {3, -5, 2, -7};
         double initialGuess = 3;
         double tolerance = 1e-6;
         int maxIterations = 100;
@@ -23,25 +20,22 @@ public class NewtonRaphsonGeneric {
     }
 
     public static double findRoot(double[] coefficients, double initialGuess, double tolerance, int maxIterations) {
-        double x_n = initialGuess;
+        double inital = initialGuess;
         for (int i = 0; i < maxIterations; i++) {
-            double fx_n = polynomialFunction(coefficients, x_n);
-            double fPrime_x_n = derivativeFunction(coefficients, x_n);
+            double functionValue = polynomialFunction(coefficients, inital);
+            double derivativeValue = derivativeFunction(coefficients, inital);
 
             // Verificare pentru a preveni împărțirea la zero
-            if (Math.abs(fPrime_x_n) < 1e-10) {
+            if (Math.abs(derivativeValue) < 1e-10) {
                 System.out.println("Derivata este aproape zero, metoda nu poate continua.");
                 return Double.NaN;
             }
-
-            double x_n1 = x_n - (fx_n / fPrime_x_n);
-
+            double x_n1 = inital - (functionValue / derivativeValue);
             // Verifică dacă diferența dintre iterații este suficient de mică
-            if (Math.abs(x_n1 - x_n) < tolerance) {
+            if (Math.abs(x_n1 - inital) < tolerance) {
                 return x_n1;
             }
-
-            x_n = x_n1;
+            inital = x_n1;
         }
         return Double.NaN; // Dacă nu converge în numărul maxim de iterații
     }
